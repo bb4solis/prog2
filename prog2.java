@@ -61,10 +61,6 @@ public class Deck{
     }
     public void display()
     {
-        System.out.print(suit + rank);
-    }
-    public int getValue()
-    {
 
     }
     public char getRank
