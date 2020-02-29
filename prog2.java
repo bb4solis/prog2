@@ -4,101 +4,95 @@
   Due Date: March 3, 2020
 */
 
-/**
-*/
+
 import java.util.Random;
+//We will build the card first 
+
+public class Card{
+    private char suit;
+    private char rank;
+    public Card(char r, char s)
+    {
+        char rank=r;
+        char suit=s;
+    }
+    public void display()
+    {
+        System.out.print(rank + suit);
+    }
+    public int getValue()
+    {
+        int val;
+        if ( Character.isLetter(rank)&& rank !='A')
+          {
+            val=10;
+          }
+        else if (rank=='A')val=1;
+        else val=rank;
+
+        return val;
+    }
+    public char getRank()
+    {
+        return rank;
+    }
+    public char getSuit()
+    {
+        return suit;
+    }
+}
+
 public class Deck{
-    private Card[] storage;//make an arry of careds
+    private Card [] storage;
     private int top;
 
     public Deck()
     {
-        char[] suits={'H','D','S','C'};
-        char[] ranks= {'A','2','3','4','5','6','7','8','9','T''J','Q','K'};
-        storage= new Card[52];
-        top=0;
+        char [] suits={'H','D','S','C'};
+        char [] ranks={'A','2','3','4','5','6','7','8','9','T','J','Q','K'};
+        storage = new Card [52];
+        top =0;// the top card in the deck
 
         int count=0;
         Card C1;
-        for(int s=0;r<ranks.length;r++)
+        for( int s = 0 ; s < suits.length; s++)
         {
-            C1= new Card(rank[r], suits[s]);
+            C1= new Card (rank [r], suits[s]);
             storage [count++]=C1;
         }
-        
     }
-
     public void display()
-    {
-
-    }
-    
-    public void shuffle()
-    {
-        private Card[] storage;
-        private int top;
-        public void shuffle()
+    {   
+        for(int r=0;r<4;r++)
         {
-            card temp;
-            for (int i =0;i <10000; i ++)
+            for(int c=0 ;r<13;j++)
             {
-                x=rand.nextInt(52);
-                //y
-                temp=storage[x];
+                System.out.print( storage [13 * r + c ] + ", " );
             }
         }
     }
-}
-
-/*public class Card{
-    private char suit;
-    private char rank;
-
-    public Card(char r,char s)
-    {
-        char suit=s;
-        char rank=r;
-    }
-    public void display()
-    {
-
-    }
-    public char getRank
-    {
-
-    }
-    public char getSuite()
+    public void shuffle()
     {
         
-    }
-}
-public static void main(String args[])
-{
+        Random rand = new Random();
+        Card temp;
+        int x,y,holder;
+        for (int i = 0 ; i < 1000 ; i ++)
+         {
+            x=rand.nextInt(52);
+            y=rand.nextInt(52);
+            temp=storage[x];
+            storage[x]=storage[y];
+            storage[y]=temp;
 
-}
- 
-public static void menu(int choice)
-{
-    switch(choice)
-    {
-        case 1:
-        //new deck
-            break;
-        case 2:
-        //Display Deck
-            break;
-        case 3:
-        //Shuffle Deck
-            break;
-        case 4:
-        //Play Solitaire Prime
-            break;
-        case 5:
-        //Exit
-            return 0;
-        break;
-        default:
-            System.out.print("Oh no you've imput an invalid character.Please Try again");
-        break;
+         }
     }
-}*/
+    public Card deal()
+    {
+        return storage[top++];
+    }
+    public int cardsLeft()
+    {
+        return  52 - top;
+    }
+}
