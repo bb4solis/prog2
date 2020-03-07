@@ -1,7 +1,10 @@
 import java.util.Random;
-
+/***
+ * Generates, displays, and simulates a deck of card
+ * @author Steven Gold and Brenda Solis
+ */
 public class Deck{
-    private Card storage;
+    private Card storage[];
     private int top;
 
     public Deck()
@@ -20,39 +23,59 @@ public class Deck{
                 C1= new Card (ranks[r], suits[s]);
                 storage [count++]=C1;
             }
-            
+
         }
     }
+
+    /***
+     * displays deck of card in a 13 x 4 table
+     */
     public void display()
-    {   
+    {
         for(int r=0;r<4;r++)
         {
-            for(int c=0 ;r<13;j++)
+            for(int c=0 ;c<13;c++)
             {
-                System.out.print( storage [13 * r + c ] + ", " );
+               storage[13 * r + c ].display();
+               System.out.print(" ");
             }
+            System.out.print("\n");
         }
     }
+
+    /***
+     * shuffles the order of deck of cards
+     */
     public void shuffle()
     {
-        
+
         Random rand = new Random();
         Card temp;
         int x,y,holder;
         for (int i = 0 ; i < 1000 ; i ++)
-         {
+        {
             x=rand.nextInt(52);
             y=rand.nextInt(52);
             temp=storage[x];
             storage[x]=storage[y];
             storage[y]=temp;
 
-         }
+        }
     }
+
+    /***
+     *
+     * @return card at top of the deck
+     */
     public Card deal()
     {
         return storage[top++];
     }
+
+    /***
+     *
+     * @return number of cards left in a deck of 52 cards
+     */
     public int cardsLeft()
     {
         return  52 - top;
